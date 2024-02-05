@@ -19,4 +19,28 @@ const firebaseConfig = {
   measurementId: "G-E96B73PT47"
 };
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
+export async function ambilDaftarSiswa () {
+  const siswaRef = collection(db, "siswa");
+  const q = query(siswaRef, orderBy("nama"));
+  const querySnapshot = await getDocs(q);
+  
+  let retval = [];
+  querySnapshot.forEach((doc) => {
+    retval.push({ id: doc.id, nama: doc.data().nama });
+  });
+  
+  return retval;
+}
+const app = initializeApp(firebaseConfig);
+export async function tambahSiswa(val) {
+  try {
+    const docRef = await addDoc(collection(db,"siswa"),{
+      nama: val
+    });
+    console.log('Berhasil menyimpan dokumen dengan ID: ' + docRef.id);
+  } catch (e) {
+    console.log('Error menambah dokumen: ' + e);
+  }
+}
