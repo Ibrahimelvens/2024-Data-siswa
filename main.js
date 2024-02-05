@@ -33,10 +33,10 @@ export async function ambilDaftarSiswa () {
   
   return retval;
 }
-const app = initializeApp(firebaseConfig);
+
 export async function tambahSiswa(val) {
   try {
-    const docRef = await addDoc(collection(db,"siswa"),{
+    const docRef = await addDoc(collection(db, "siswa"), {
       nama: val
     });
     console.log('Berhasil menyimpan dokumen dengan ID: ' + docRef.id);
