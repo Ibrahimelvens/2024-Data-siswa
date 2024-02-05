@@ -23,8 +23,7 @@
 </body>
   <script type="module">
     import { ambilDaftarSiswa } from "./main.js";
-    
-    $(document).ready(async function() {
+$(document).ready(async function() {
       let elemenNamaSiswa = $('#daftar-siswa');
       let daftarSiswa = await ambilDaftarSiswa();
       
